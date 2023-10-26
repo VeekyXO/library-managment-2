@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Library</title>
+    <style>
+      body {
+        background-color: #f5f5f5;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      li {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        margin: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      a {
+        text-decoration: none;
+        color: #007bff;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>My Library</h1>
+    {% if books == []: %}
+    <p>Library is empty.</p>
+    {% endif %}
+    <ul>
+      {% for book in books %}
+      <li>
+        <a href="{{ url_for('delete', id=book.id) }}">Delete</a>
+        {{book.title}} - {{book.author}} - {{book.rating}}/10
+        <a href="{{ url_for('edit', id=book.id) }}">Edit Rating</a>
+      </li>
+      {% endfor %}
+    </ul>
+    <a href="{{ url_for('add') }}">Add New Book</a>
+  </body>
+</html>
